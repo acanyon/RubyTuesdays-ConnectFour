@@ -1,0 +1,62 @@
+The /app folder contains the bulk of our rails app.
+
+Keep in mind that this document is only a high level overview. Learning and
+fully understanding the Model-View-Controller pattern is likely to take time.
+Focus on going into depth with one aspect at a time.
+
+As rails is an MVC framework, the three most notable folders are:
+
+    -> models/
+      A model is an object which is persisted (saved) to the database. Models
+      are typically ActiveRecord objects. Each ActiveRecord class typically
+      relates to one table in the database.
+
+      Within active record models you can create, save, and otherwise query
+      records:
+          - http://guides.rubyonrails.org/active_record_querying.html
+
+      There may be associations between multiple models:
+          - http://guides.rubyonrails.org/association_basics.html
+
+      And many models are enhanced using validations and other callbacks:
+          - http://guides.rubyonrails.org/active_record_validations_callbacks.html
+
+    -> views/
+      Contains layouts and templates
+          - http://guides.rubyonrails.org/layouts_and_rendering.html
+
+      Rather than using *.erb views, this application uses HAML.
+          - http://haml.info/
+
+    -> controllers/
+      Each path points to its own action (a method within a controller class).
+      The controller (usually) interacts with models, then sends data to a
+      corresponding view.
+          - http://guides.rubyonrails.org/action_controller_overview.html
+
+
+Our rails application also contains:
+
+    -> assets/
+      A web pages "assets" are images, css (stylesheets), and javascripts. As
+      such there is a folder for each type of asset within assets/.
+
+    -> helpers/
+      Helpers, or view helpers, are ruby methods which can be used in views to
+      process information. All helper methods are auto-loaded into all views.
+          - http://guides.rubyonrails.org/form_helpers.html
+
+    -> mixins/
+      The mixins folder is used to hold groups of modules that may be "mixed in"
+      or otherwise included in controller, view, or model classes. Mixins are
+      often used when functionality is shared between classes, or to reduce the
+      bulk of large models.
+
+    -> validators/
+      The validator folder is where custom model validators are stored.
+          - http://guides.rubyonrails.org/active_record_validations_callbacks.html#performing-custom-validations
+
+
+Dont be surprised if you find even more folders in other rails applications.
+Some additional common folders include mailers/ and oneoffs/, however the list
+certainly doesnt stop there!

@@ -1,0 +1,18 @@
+The spec folder is home to all of our application's tests.
+
+As you may notice, our /spec folder closely mimics the structure of the /app
+folder. Nearly every file in the /app folder should have a separate unit test
+and corresponding spec file.
+
+The non-spec files are the following:
+
+    -> /factories (factory girl modal declaration)
+      Contains files corresponding to models often used in specs.
+
+        FactoryGirl
+          - http://github.com/thoughtbot/factory_girl#readme
+
+    -> spec_helper.rb
+      The spec_helper file is home to spec helpers, require statements, and spec
+      configuration. It is common practice to include spec_helper.rb at the top of
+      each spec file.

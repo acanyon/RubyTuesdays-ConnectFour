@@ -1,0 +1,25 @@
+The /config folder is home to Rack and Rails configuration.
+
+Most of the configuration you see here is what Rails auto-generates when you
+create a new rails project. These files consist of environment configs, rack
+initializers, among other things.
+
+
+The most notable files and folders are:
+
+    -> application.rb
+      This file is a rails configuration file for all environments.
+
+
+    -> environments/
+      This folder contains rails configuration files for different environments. If
+      anything is both defined in one of these files and application.rb, the
+      environment config file will override the configuration in application.rb
+
+
+    -> routes.rb (rails routes file)
+      The routes file declares the URL paths with controller actions.
+
+
+To learn more about general rails configuration, check out the rails guides:
+  http://guides.rubyonrails.org/configuring.html

@@ -1,0 +1,55 @@
+// Place all the styles related to the game controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.board {
+  position: relative;
+  left: 50%;
+  margin-left: -350px;
+  margin-top: 30px;
+
+  .column {
+    position: relative;
+    float: left;
+
+    background-color: yellow;
+    height: 600px;
+    width: 97px;
+    border: 3px;
+    border-color: #ffffe0;
+    border-style: solid;
+
+    .column-button {
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+    }
+
+    .cell-wrapper {
+      position: absolute;
+      bottom: 0px;
+      width: 100%;
+    }
+
+    .red {
+      background-color: red;
+    }
+
+    .blue {
+      background-color: blue;
+    }
+
+    .cell {
+      position: relative;
+      height: 95px;
+      margin-top: 5px;
+      width: 100%;
+    }
+
+    .animated {
+      margin-top: -95px;
+    }
+  }
+}
+

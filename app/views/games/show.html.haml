@@ -1,0 +1,20 @@
+- unless @game.status == 'in_progress'
+  .modal-backdrop
+  .modal{:id => "myModal", 'tabindex' => "-1", 'role' => "dialog", 'aria-labelledby' => "myModalLabel", 'aria-hidden' => "true"}
+    .modal-header
+      %p
+        %h2="And the winner is... #{@game.status} player!"
+    .modal-footer
+      = link_to("Home", games_path, :class => :btn)
+      = link_to("New Game", games_path, :class => :btn, :method => :post)
+.hide#turn{:player => @game.current_player}
+.board
+  #post_moves_path.hide{:path => move_path(@game)}
+  - @game.board.each_with_index do |column, col_num|
+    - col_class = "column#{col_num}"
+    .column{:class => col_class}
+      .column-button{:column =>  col_num}
+      .cell.animated.hide{class: [@game.current_player, col_class]}
+      .cell-wrapper{:class => col_class}
+        - column.reverse.each do |cell|
+          .cell{:class =>  cell}

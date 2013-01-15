@@ -1,0 +1,20 @@
+= form_for @game, :html => { :class => 'form-horizontal' } do |f|
+  .control-group
+    = f.label :last_move_id, :class => 'control-label'
+    .controls
+      = f.number_field :last_move_id, :class => 'number_field'
+  .control-group
+    = f.label :next_player, :class => 'control-label'
+    .controls
+      = f.text_field :next_player, :class => 'text_field'
+  .control-group
+    = f.label :status, :class => 'control-label'
+    .controls
+      = f.text_field :status, :class => 'text_field'
+  .control-group
+    = f.label :board, :class => 'control-label'
+    .controls
+      = f.text_area :board, :class => 'text_area'
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), games_path, :class => 'btn'

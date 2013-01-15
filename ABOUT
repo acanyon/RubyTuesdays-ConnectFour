@@ -1,0 +1,62 @@
+This is your project's root directory. Along with housing our application, it
+also is the home to many of our tools' configuration files.
+
+The following files reside in this folder:
+
+    -> .gitignore (a git configuration file)
+      The gitignore file specifies which files to not include in a git repository.
+      Files included are often system files, temporary files, and other files which
+      are specific to a machine.
+
+        Gitignore
+          - http://help.github.com/articles/ignoring-files
+
+
+    -> .rspec (a rspec configuration file)
+      RSpec is a commonly used testing tool for ruby.
+
+        RSpec
+          - http://rspec.info/
+
+
+    -> .rvmrc (a rvm configuration file)
+      A project rvmrc file (a rvmrc file in the root folder of a project directory)
+      specifies a ruby environment.
+
+      Ruby Version Manager, or RVM, helps install and manage multiple versions of
+      ruby, different interpreters, and sets of gems.
+
+        RVM
+          - http://rvm.io/
+        rvmrc files
+          - http://rvm.io/workflow/rvmrc/#project
+
+
+    -> Gemfile (a list of gems) && Gemfile.lock (a bundler-generated file)
+      A Gemfile is a list of dependencies (gems) of your project. Use Bundler to
+      install and manage rubygems.
+
+      To install your gems, run `bundle install`.
+
+      Gemfile.lock is a bundler-generated list of gems with versions. This is
+      generated and versioned to keep a consistent environment across machines.
+      It will be created and updated when you install gems with bundler.
+
+        Bundler
+          - http://gembundler.com/
+        Gemfile
+          - http://gembundler.com/v1.2/gemfile.html
+
+
+    -> Rakefile (Rake build configuration file)
+      Rake (Ruby Make) is a tool used to run ruby code.
+
+        Rake
+          - http://rake.rubyforge.org/
+
+
+    -> config.ru
+      A configuration file for rack servers. In this case, this file loads
+      environment files in config/environment and our rails application.
+
+For descriptions about each folder, look at the residing ABOUT doc.

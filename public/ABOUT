@@ -1,0 +1,14 @@
+The /public directory contains default web-pages.
+
+   -> 404.html, 422.html, 500.html
+     These pages are shown to the user when any one of the HTTP status codes
+     are returned. For example, if a page is not found you will see the
+     404.html page is displayed.
+
+       List of HTML Status Codes:
+         - http://en.wikipedia.org/wiki/List_of_HTTP_status_codes
+
+   -> robots.txt
+     The robots.txt file is for web-crawlers (most notably search engines).
+         - http://en.wikipedia.org/wiki/Robots.txt
+
