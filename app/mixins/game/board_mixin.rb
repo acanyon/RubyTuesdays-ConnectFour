@@ -63,7 +63,6 @@ module Game::BoardMixin
         if self.board[column].length <= row
           pretty_board << '  '
         else
-          binding.pry
           pretty_board << "#{self.board[column][row][0]} "
         end
 
