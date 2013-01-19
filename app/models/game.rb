@@ -76,8 +76,12 @@ class Game < ActiveRecord::Base
   # @param column [Integer]
   # @param player [String] either 'red' or 'blue'
   def make_move(column, player)
-    # TODO
+    validate_column(column)
+    raise ArgumentError, 'invalid player' unless %w(blue red).include? player
 
+    board[column] << player
+    @status = check_for_winner
+    set_next_player
   end
 
   # Checks if there is a winner and returns the player if it exists
@@ -94,7 +98,10 @@ class Game < ActiveRecord::Base
 
   private
 
-  # NOTE: Put all helper-methods here!
+    def validate_column(column)
+      raise ArgumentError, 'column out of bounds' unless column >= 0 and column < NUM_ROWS
+      raise ArgumentError, 'column full' unless board[column].size < NUM_ROWS
+    end
 
 
 end
