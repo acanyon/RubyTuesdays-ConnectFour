@@ -54,20 +54,19 @@ class Game < ActiveRecord::Base
   #
   # @return [String] The new player
   def set_next_player
-    # TODO
 
   end
 
   # returns the piece at the coordinates
   def board_position(coords)
-    # TODO
-
+    raise ArgumentError, 'those are invalid coordinates' unless coords_valid?(coords)
+    board[coords.first][coords.last]
   end
 
   # checks that the given coordinates are within the valid range
   def coords_valid?(coords)
-    # TODO
-
+    raise ArgumentError, 'what dimension are you playing in? wrong # of coords' unless coords.size == 2
+    row_in_bounds?(coords.last) and column_in_bounds?(coords.first)
   end
 
   # MakeMove takes a column and player and updates the board to reflect the
@@ -76,7 +75,8 @@ class Game < ActiveRecord::Base
   # @param column [Integer]
   # @param player [String] either 'red' or 'blue'
   def make_move(column, player)
-    validate_column(column)
+    raise ArgumentError, 'column out of bounds' unless column_in_bounds?(column)
+    raise ArgumentError, 'column full' unless board[column].size < NUM_ROWS
     raise ArgumentError, 'invalid player' unless %w(blue red).include? player
 
     board[column] << player
@@ -98,10 +98,11 @@ class Game < ActiveRecord::Base
 
   private
 
-    def validate_column(column)
-      raise ArgumentError, 'column out of bounds' unless column >= 0 and column < NUM_ROWS
-      raise ArgumentError, 'column full' unless board[column].size < NUM_ROWS
-    end
+  def row_in_bounds?(row)
+    row >= 0 and row < NUM_ROWS
+  end
 
-
+  def column_in_bounds?(column)
+    column >= 0 and column < NUM_COLUMNS
+  end
 end
