@@ -46,15 +46,14 @@ class Game < ActiveRecord::Base
   # Gets the next player
   # @return [String] The next player
   def next_player
-    # TODO
-
+    self.current_player == 'red' ? 'blue' : 'red'
   end
 
   # setNextPlayer sets the next player
   #
   # @return [String] The new player
   def set_next_player
-
+    self.current_player = next_player
   end
 
   # returns the piece at the coordinates
@@ -88,11 +87,8 @@ class Game < ActiveRecord::Base
   #
   # @return [String] 'red', 'blue', 'tie', 'draw', or 'in_progress'
   def check_for_winner
-    # TODO
-
+    puts self.pretty_print
   end
-
-
 
   #############################################################################
 
