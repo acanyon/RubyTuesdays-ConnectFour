@@ -35,9 +35,9 @@ describe Game do
       game.should_receive(:check_for_winner)
 
       game.board[column].length.should == 0
-      game.make_move(column, :blue)
+      game.make_move(column, 'blue')
       game.board[column].length.should == 1
-      game.board[column][0].should == :blue
+      game.board[column][0].should == 'blue'
     end
 
     it 'should set the next_player' do
