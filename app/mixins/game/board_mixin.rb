@@ -26,7 +26,7 @@ module Game::BoardMixin
   # @param [Integer] n The distance away from the origin_coord
   # @return [Array] The coordinates in the diagonal direction, n away from the
   #   origin coords
-  def diagonal(coords, i)
+  def diagonal_right(coords, i)
     [coords[0]+i, coords[1]+i]
   end
 

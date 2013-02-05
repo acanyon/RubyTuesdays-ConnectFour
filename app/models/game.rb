@@ -90,10 +90,10 @@ class Game < ActiveRecord::Base
 
     each_board_position do |coord|
      # visited[coord[0]][coord[1]] = true
-      if (check_column(coord) or
-     # check_row(coord) or
+      if check_column(coord) or
+            check_row(coord) or
      # check_left_diagonal(coord) or
-        check_right_diagonal(coord))
+            check_right_diagonal(coord)
         return board_position(coord)
       end
     end
@@ -121,27 +121,36 @@ class Game < ActiveRecord::Base
     true
   end
 
-  def check_column(coord)
-    start_column = board_position(coord)
+  def check_column(coords)
+    check_direction(coords) do |coord, i|
+      vertical(coord, i)
+    end
+  end
+
+  def check_right_diagonal(coords)
+    check_direction(coords) do |coord, i|
+      diagonal_right(coord, i)
+    end
+  end
+
+  def check_row(coords)
+    check_direction(coords) do |coord, i|
+      horizontal(coord, i)
+    end
+  end
+
+  def check_direction(coords)
+    start_pos = board_position coords
     winning = false
-    return false if start_column.nil?
-    1.upto(3) { |i|
-      if row_in_bounds?(vertical(coord, i).last) and board_position(vertical(coord, i)) == start_column
+    return false if start_pos.nil?
+
+    1.upto(3) {|i|
+      if coords_valid?(yield(coords, i)) and board_position(yield(coords, i)) == start_pos
         winning = true
       else
         winning = false
       end
     }
     winning
-  end
-
-  def check_right_diagonal(coords)
-    start_pos = board_position coords
-    winning = false
-    return false if start_pos.nil?
-
-    1.upto(3) {|i|
-    #  if
-    }
   end
 end
