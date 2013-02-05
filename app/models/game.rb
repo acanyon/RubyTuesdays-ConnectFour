@@ -79,7 +79,7 @@ class Game < ActiveRecord::Base
     raise ArgumentError, 'invalid player' unless %w(blue red).include? player
 
     board[column] << player
-    @status = check_for_winner
+    self.status = check_for_winner
     set_next_player
   end
 
@@ -87,7 +87,19 @@ class Game < ActiveRecord::Base
   #
   # @return [String] 'red', 'blue', 'tie', 'draw', or 'in_progress'
   def check_for_winner
-    puts self.pretty_print
+
+    each_board_position do |coord|
+     # visited[coord[0]][coord[1]] = true
+      if (check_column(coord) or
+     # check_row(coord) or
+     # check_left_diagonal(coord) or
+        check_right_diagonal(coord))
+        return board_position(coord)
+      end
+    end
+
+    return 'draw' if board_is_full
+    'in_progress'
   end
 
   #############################################################################
@@ -100,5 +112,36 @@ class Game < ActiveRecord::Base
 
   def column_in_bounds?(column)
     column >= 0 and column < NUM_COLUMNS
+  end
+
+  def board_is_full
+    (0..NUM_COLUMNS-1).each do |i|
+      return false if board_position([i, NUM_ROWS - 1]).nil?
+    end
+    true
+  end
+
+  def check_column(coord)
+    start_column = board_position(coord)
+    winning = false
+    return false if start_column.nil?
+    1.upto(3) { |i|
+      if row_in_bounds?(vertical(coord, i).last) and board_position(vertical(coord, i)) == start_column
+        winning = true
+      else
+        winning = false
+      end
+    }
+    winning
+  end
+
+  def check_right_diagonal(coords)
+    start_pos = board_position coords
+    winning = false
+    return false if start_pos.nil?
+
+    1.upto(3) {|i|
+    #  if
+    }
   end
 end
