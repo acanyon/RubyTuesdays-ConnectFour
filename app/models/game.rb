@@ -38,7 +38,7 @@ class Game < ActiveRecord::Base
 
     # initialize variables
     # NOTE: Add all initialization here!
-    self.board = (0...NUM_COLUMNS).map{[]}
+    self.board = (0...NUM_COLUMNS).map{[]} unless self.board.present?
     self.current_player = 'blue' unless self.current_player.present?
     self.status = 'in_progress' unless self.status.present?
   end
