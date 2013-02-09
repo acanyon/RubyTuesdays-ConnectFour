@@ -35,7 +35,7 @@ module Game::BoardMixin
   #
   # @param [Array] origin_coord The coordinates to start from
   # @param [Integer] n The distance away from the origin_coord
-  # @return [Array] The coordinates in the diagonal direction, n away from the
+  # @return [Array] The coordinates in the vertical direction, n away from the
   #   origin coords
   def vertical(coords, i)
     [coords[0], coords[1]+i]
@@ -46,7 +46,7 @@ module Game::BoardMixin
   #
   # @param [Array] origin_coord The coordinates to start from
   # @param [Integer] n The distance away from the origin_coord
-  # @return [Array] The coordinates in the diagonal direction, n away from the
+  # @return [Array] The coordinates in the horizontal direction, n away from the
   #   origin coords
   def horizontal(coords, i)
     [coords[0]+i, coords[1]]

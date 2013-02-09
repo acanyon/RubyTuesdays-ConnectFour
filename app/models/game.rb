@@ -82,7 +82,7 @@ class Game < ActiveRecord::Base
 
   # Checks if there is a winner and returns the player if it exists
   #
-  # @return [String] 'red', 'blue', 'tie', 'draw', or 'in_progress'
+  # @return [String] 'red', 'blue', 'tie', or 'in_progress'
   def check_for_winner
     # TODO
 
