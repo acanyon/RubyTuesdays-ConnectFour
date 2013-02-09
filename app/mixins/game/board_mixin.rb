@@ -24,10 +24,23 @@ module Game::BoardMixin
   #
   # @param [Array] origin_coord The coordinates to start from
   # @param [Integer] n The distance away from the origin_coord
-  # @return [Array] The coordinates in the diagonal direction, n away from the
+  # @return [Array] The coordinates in the diagonal right (right & up) direction, n away from the
   #   origin coords
   def diagonal_right(coords, i)
     [coords[0]+i, coords[1]+i]
+  end
+
+  # gets the coordinates n away in the diagonal direction from the coordinates
+  # we started from
+  #
+  # @param [Array] origin_coord The coordinates to start from
+  # @param [Integer] n The distance away from the origin_coord
+  # @return [Array] The coordinates in the diagonal right (right & up) direction, n away from the
+  #   origin coords
+  def diagonal_left(coords, i)
+
+    new_coord = [coords[0]+i, coords[1]-i]
+   # puts new_coord + " " + self.board_position(new_coord)
   end
 
   # gets the coordinates n away in the vertical direction from the coordinates

@@ -85,14 +85,13 @@ class Game < ActiveRecord::Base
 
   # Checks if there is a winner and returns the player if it exists
   #
-  # @return [String] 'red', 'blue', 'tie', 'draw', or 'in_progress'
+  # @return [String] 'red', 'blue', 'tie', or 'in_progress'
   def check_for_winner
 
     each_board_position do |coord|
-     # visited[coord[0]][coord[1]] = true
       if check_column(coord) or
             check_row(coord) or
-     # check_left_diagonal(coord) or
+            check_left_diagonal(coord) or
             check_right_diagonal(coord)
         return board_position(coord)
       end
@@ -133,6 +132,12 @@ class Game < ActiveRecord::Base
     end
   end
 
+  def check_left_diagonal(coords)
+    check_direction(coords) do |coord, i|
+      diagonal_left(coord, i)
+    end
+  end
+
   def check_row(coords)
     check_direction(coords) do |coord, i|
       horizontal(coord, i)
@@ -141,16 +146,10 @@ class Game < ActiveRecord::Base
 
   def check_direction(coords)
     start_pos = board_position coords
-    winning = false
     return false if start_pos.nil?
 
-    1.upto(3) {|i|
-      if coords_valid?(yield(coords, i)) and board_position(yield(coords, i)) == start_pos
-        winning = true
-      else
-        winning = false
-      end
+    (1..3).all? {|i|
+      coords_valid?(yield(coords, i)) and board_position(yield(coords, i)) == start_pos
     }
-    winning
   end
 end

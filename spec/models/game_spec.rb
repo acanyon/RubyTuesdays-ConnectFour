@@ -171,9 +171,11 @@ describe Game do
 
       games.each do |correct_status, game_data|
         game = Game.create game_data
-        game.check_for_winner
+        game.board = game_data['board']
+        puts game.pretty_print
+        game.check_for_winner.should == correct_status
 
-        game.status.should == correct_status
+ #       game.status.should == correct_status
       end
     end
   end
