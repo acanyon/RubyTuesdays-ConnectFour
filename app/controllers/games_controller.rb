@@ -6,7 +6,7 @@ class GamesController < ApplicationController
   # @verb GET
   # @path /games
   def index
-    # TODO
+    @games = Game.all
   end
 
   # Show a form for creating a new game
@@ -15,7 +15,7 @@ class GamesController < ApplicationController
   # @verb GET
   # @path /games/new
   def new
-    # TODO
+    @game = Game.new
   end
 
   # Shows game with given :id
@@ -24,7 +24,7 @@ class GamesController < ApplicationController
   # @verb GET
   # @path /games/:id
   def show
-    # TODO
+    @game = Game.find_by_id(:id)
   end
 
   # Creates a game recourse
