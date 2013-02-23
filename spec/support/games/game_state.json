@@ -1,11 +1,24 @@
 [
-  ["red", {"board":[["red","blue"],["blue","red"],["red","blue","red"],["blue","red","blue","red"],[],[],[]],"current_player":"blue","status":"in_progress"}],
+    ["tie", {"board":[["blue","red","blue","red","blue","red"],
+                    ["red","blue","red","blue","red","blue"],
+                    ["blue","red","blue","red","blue","red"],
+                    ["blue","red","blue","red","blue","red"],
+                    ["red","blue","red","blue","red","blue"],
+                    ["blue","red","blue","red","blue","red"],
+                    ["blue","red","blue","red","blue","red"]],"current_player":"red","status":"in_progress"}],
+    ["in_progress", {"board":[["blue","red","red","blue"],
+        ["red","blue","blue"],
+        ["blue","red","red","red"],["red","blue"],["blue"],["blue","red"],[]],"current_player":"blue","status":"in_progress"}],
+
+  ["red",{"board":[["red","blue"],["blue","red"],["red","blue","red"],["blue","red","blue","red"],[],[],[]],"current_player":"blue","status":"in_progress"}],
   ["in_progress",{"board":[[],[],[],[],[],[],[]],"current_player":null,"status":"in_progress"}],
   ["red",{"board":[["red","blue"],["red","blue"],["red","blue"],["red"],[],[],[]],"current_player":"blue","status":"in_progress"}],
   ["red",{"board":[["red","red","red","red"],["blue","blue"],[],["blue"],[],[],[]],"current_player":"blue","status":"in_progress"}],
+  ["red",{"board":[["blue","blue"],["blue","red","red","red"],["red","blue","red"],["blue","red","blue","red"],["red"],[],[]],"current_player":"blue","status":"in_progress"}],
 
-  ["blue", {"board":[["blue","red"],["red","blue"],["blue","red","blue"],["red","blue","red","blue"],[],[],[]],"current_player":"red","status":"in_progress"}],
+  ["blue",{"board":[["blue","red"],["red","blue"],["blue","red","blue"],["red","blue","red","blue"],[],[],[]],"current_player":"red","status":"in_progress"}],
   ["in_progress",{"board":[[],[],[],[],[],[],[]],"current_player":null,"status":"in_progress"}],
   ["blue",{"board":[["blue","red"],["blue","red"],["blue","red"],["blue"],[],[],[]],"current_player":"red","status":"in_progress"}],
-  ["blue",{"board":[["blue","blue","blue","blue"],["red","red"],[],["red"],[],[],[]],"current_player":"red","status":"in_progress"}]
+  ["blue",{"board":[["blue","blue","blue","blue"],["red","red"],[],["red"],[],[],[]],"current_player":"red","status":"in_progress"}],
+  ["blue",{"board":[["red","red"],["red","blue","blue","blue"],["blue","red","blue"],["red","blue","red","blue"],["blue"],[],[]],"current_player":"red","status":"in_progress"}]
 ]
