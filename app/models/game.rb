@@ -97,7 +97,7 @@ class Game < ActiveRecord::Base
       end
     end
 
-    return 'draw' if board_is_full
+    return 'tie' if board_is_full
     'in_progress'
   end
 

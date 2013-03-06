@@ -34,6 +34,7 @@ class GamesController < ApplicationController
   def create
     game = Game.new(params[:game])
     game.save
+    redirect_to game_url(game), :status => :created
   end
 
   # Destroys given game
@@ -41,7 +42,13 @@ class GamesController < ApplicationController
   # @verb DELETE
   # @path /games/:id
   def destroy
-    # TODO
+    game = Game.find_by_id(params[:id])
+    if game.nil?
+      redirect_to games_url, :status => :not_found
+      return
+    end
+    game.destroy
+    redirect_to games_url, :status => :ok
   end
 
 

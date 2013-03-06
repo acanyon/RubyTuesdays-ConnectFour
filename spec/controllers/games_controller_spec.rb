@@ -115,7 +115,7 @@ describe GamesController do
         Game.stub(:find, @game.id).and_return(@game)
         @game.should_receive(:make_move).and_return(true)
         post :move, :id => @game.id,
-                    :player => ['red', 'blue'].sample,
+                    :player => %w('red', 'blue').sample,
                     :column => (0...Game::NUM_COLUMNS)
       end
 
