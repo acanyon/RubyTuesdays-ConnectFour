@@ -171,7 +171,6 @@ describe Game do
 
       games.each do |correct_status, game_data|
         game = Game.create game_data
-        puts game.pretty_print
         game.check_for_winner.should == correct_status
       end
     end
