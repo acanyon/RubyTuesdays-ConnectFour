@@ -42,11 +42,8 @@ class GamesController < ApplicationController
   # @verb DELETE
   # @path /games/:id
   def destroy
-    game = Game.find_by_id(params[:id])
-    if game.nil?
-      redirect_to games_url, :status => :not_found
-      return
-    end
+    game = get_game params[:id]
+    return if game.nil?
     game.destroy
     redirect_to games_url, :status => :ok
   end
@@ -59,7 +56,11 @@ class GamesController < ApplicationController
   # @param [String] :player The player making the move
   # @param [Int] :column The column the move is made on
   def move
-    # TODO
+    game = get_game params[:id]
+    return if game.nil?
+puts params[:player]
+    game.make_move(params[:column].to_i, params[:player].to_s)
+
   end
 
   private
@@ -67,6 +68,15 @@ class GamesController < ApplicationController
   def not_found
     render :status => 404
     #raise ActionController::RoutingError.new('Not Found')
+  end
+
+  def get_game(id)
+    game = Game.find_by_id(id)
+    if game.nil?
+      redirect_to games_url, :status => :not_found
+      return nil
+    end
+    game
   end
 
 end
