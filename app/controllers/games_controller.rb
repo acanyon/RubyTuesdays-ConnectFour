@@ -32,9 +32,14 @@ class GamesController < ApplicationController
   # @verb POST
   # @path /games
   def create
-    game = Game.new(params[:game])
-    game.save
+    game = Game.create!
+
     redirect_to game_url(game), :status => :created
+    # amanda's version: (for me, only leads to text of the response)
+    #render :json => {:success => true,
+    #                 :id => @game.id,
+    #                 :game => @game},
+    #       :status => :created
   end
 
   # Destroys given game
@@ -61,6 +66,19 @@ class GamesController < ApplicationController
 puts params[:player]
     game.make_move(params[:column].to_i, params[:player].to_s)
 
+    #unless Game.exists?(params[:id])
+    #  render :json => {:success => false,
+    #                   :id => params[:id]},
+    #         :status => 404
+    #else
+    #  game = Game.find(params[:id])
+    #  success = game.make_move(params['column'].to_i, params['player'])
+    #  render :json => {:success => success,
+    #                   :id => game.id,
+    #                   :game => game,
+    #                   :state => game.status},
+    #         :status => (success ? 200 : 400)
+    #end
   end
 
   private

@@ -15,7 +15,9 @@
     - @games.each do |game|
       %tr
         %td= link_to game.id, game_path(game)
-        %td= game.next_player
+        -# labeled as next player, but the current player is the player who should be taking the next turn
+        -# it makes more sense (to me) to display the player who is placing the next piece
+        %td= game.current_player
         %td=l game.created_at
         %td
           = link_to t('.edit', :default => t("helpers.links.edit")), edit_game_path(game), :class => 'btn btn-mini'

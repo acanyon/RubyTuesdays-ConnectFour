@@ -81,6 +81,7 @@ class Game < ActiveRecord::Base
     board[column] << player
     self.status = check_for_winner
     set_next_player
+    self.save
   end
 
   # Checks if there is a winner and returns the player if it exists
