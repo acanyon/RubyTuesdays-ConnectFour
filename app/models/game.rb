@@ -15,7 +15,7 @@ class Game < ActiveRecord::Base
   serialize :board, JSON
 
   # Security (ActiveModel::MassAssignmentSecurity)
-  attr_accessible :board, :created_at, :status, :current_player
+  attr_accessible :board, :created_at, :status, :current_player, :red_player_name, :blue_player_name
 
   ### Scopes ###
   scope :in_progress, where(:status => :in_progress)
@@ -29,7 +29,7 @@ class Game < ActiveRecord::Base
   validates_inclusion_of :status, :allow_blank => false,
                                   :in => %w(in_progress blue red tie)
   validates_with BoardValidator, :dimensions => [NUM_COLUMNS, NUM_ROWS]
-
+  validates_presence_of [:red_player_name, :blue_player_name], :on => :create
 
 
   # Sets current_player to 'blue' iff current_player has not been initialized
