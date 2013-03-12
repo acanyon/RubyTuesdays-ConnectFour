@@ -1,20 +1,20 @@
 = form_for @game, :html => { :class => 'form-horizontal' } do |f|
+
+  - if @game.errors.any?
+    #error_explanation
+      %h2 #{pluralize(@game.errors.count, 'error')} prohibited this game from being saved:
+      %ul
+        - @game.errors.full_messages.each do |msg|
+          %li= msg
+
   .control-group
-    = f.label :last_move_id, :class => 'control-label'
+    = f.label :red_player_name, :class => 'control-label'
     .controls
-      = f.number_field :last_move_id, :class => 'number_field'
+      = f.text_field :red_player_name, :class => 'text_field'
   .control-group
-    = f.label :next_player, :class => 'control-label'
+    = f.label :blue_player_name, :class => 'control-label'
     .controls
-      = f.text_field :next_player, :class => 'text_field'
-  .control-group
-    = f.label :status, :class => 'control-label'
-    .controls
-      = f.text_field :status, :class => 'text_field'
-  .control-group
-    = f.label :board, :class => 'control-label'
-    .controls
-      = f.text_area :board, :class => 'text_area'
+      = f.text_field :blue_player_name, :class => 'text_field'
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
     = link_to t('.cancel', :default => t("helpers.links.cancel")), games_path, :class => 'btn'

@@ -8,8 +8,7 @@ describe Game do
   let(:min_coords) {[0,0]}
 
   describe 'underlying relationships' do
-    let(:game) {Game.new}
-    let(:empty_game) {Game.create!.reload}
+    let(:empty_game) {FactoryGirl.create(:game)}
 
     it 'should be initialized with an empty board' do
       # create an empty board // array of 7 empty arrays
