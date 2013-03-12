@@ -18,4 +18,6 @@ ConnectFourWWC::Application.routes.draw do
   resources :games
   post '/games/:id/move' => 'games#move', :as => 'move'
 
+  root :to => "games#index"
+
 end
