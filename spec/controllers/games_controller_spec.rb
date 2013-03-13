@@ -73,6 +73,12 @@ describe GamesController do
     it 'should create a new game' do
       Game.count.should == (@game_count + 1)
     end
+
+    it 'should have the correct names' do
+      game = Game.last
+      game.red_player_name.should == 'red'
+      game.blue_player_name.should == 'blue'
+    end
   end
 
   describe 'DELETE /games/:id (games#destroy)' do

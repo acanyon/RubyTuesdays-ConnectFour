@@ -32,7 +32,7 @@ class GamesController < ApplicationController
   # @verb POST
   # @path /games
   def create
-    game = Game.create!(:red_player_name => 'Red', :blue_player_name => 'Blue')
+    game = Game.create!(params[:game])
     redirect_to game_url(game)
   end
 
