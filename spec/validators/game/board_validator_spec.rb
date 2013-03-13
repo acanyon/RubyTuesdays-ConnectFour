@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Game::BoardValidator do
-  let(:game)        {Game.new}
+  let(:game)        {FactoryGirl.build(:game)}
   let(:max_columns) {Game::NUM_COLUMNS}
   let(:max_rows)    {Game::NUM_ROWS}
 
