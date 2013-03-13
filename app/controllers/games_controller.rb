@@ -32,14 +32,8 @@ class GamesController < ApplicationController
   # @verb POST
   # @path /games
   def create
-    game = Game.create!
-
-    redirect_to game_url(game), :status => :created
-    # amanda's version: (for me, only leads to text of the response)
-    #render :json => {:success => true,
-    #                 :id => @game.id,
-    #                 :game => @game},
-    #       :status => :created
+    game = Game.create!(:red_player_name => 'Red', :blue_player_name => 'Blue')
+    redirect_to game_url(game)
   end
 
   # Destroys given game
@@ -50,7 +44,7 @@ class GamesController < ApplicationController
     game = get_game params[:id]
     return if game.nil?
     game.destroy
-    redirect_to games_url, :status => :ok
+    redirect_to games_url
   end
 
 
@@ -63,22 +57,9 @@ class GamesController < ApplicationController
   def move
     game = get_game params[:id]
     return if game.nil?
-puts params[:player]
-    game.make_move(params[:column].to_i, params[:player].to_s)
 
-    #unless Game.exists?(params[:id])
-    #  render :json => {:success => false,
-    #                   :id => params[:id]},
-    #         :status => 404
-    #else
-    #  game = Game.find(params[:id])
-    #  success = game.make_move(params['column'].to_i, params['player'])
-    #  render :json => {:success => success,
-    #                   :id => game.id,
-    #                   :game => game,
-    #                   :state => game.status},
-    #         :status => (success ? 200 : 400)
-    #end
+    success = game.make_move(params[:column].to_i, params[:player])
+    redirect_to game_url(game), :status => (success ? :ok : :bad_request)
   end
 
   private

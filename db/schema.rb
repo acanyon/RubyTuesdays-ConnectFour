@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(:version => 20130312051758) do
     t.string   "status"
     t.text     "board"
     t.datetime "updated_at",       :null => false
-    t.string   "name"
     t.string   "red_player_name"
     t.string   "blue_player_name"
   end
