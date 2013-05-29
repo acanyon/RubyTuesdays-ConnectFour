@@ -10,13 +10,15 @@
   %thead
     %tr
       %th= model_class.human_attribute_name(:id)
+      %th= model_class.human_attribute_name(:red_player_name)
+      %th= model_class.human_attribute_name(:blue_player_name)
       %th= model_class.human_attribute_name(:next_player)
       %th= model_class.human_attribute_name(:created_at)
       %th=t '.actions', :default => t("helpers.actions")
   %tbody
     - @games.each do |game|
       %tr
-        %td= link_to game.id, game_path(game)
+        %td= link_to "Game #" + game.id.to_s, game_path(game)
         %td= game.red_player_name
         %td= game.blue_player_name
         %td= game.next_player

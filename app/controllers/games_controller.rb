@@ -6,7 +6,7 @@ class GamesController < ApplicationController
   # @verb GET
   # @path /games
   def index
-    # TODO
+    @games = Game.all
   end
 
   # Show a form for creating a new game
@@ -15,7 +15,7 @@ class GamesController < ApplicationController
   # @verb GET
   # @path /games/new
   def new
-    # TODO
+    @game = Game.new
   end
 
   # Shows game with given :id
@@ -24,7 +24,7 @@ class GamesController < ApplicationController
   # @verb GET
   # @path /games/:id
   def show
-    # TODO
+    @game = Game.find_by_id(params[:id]) || not_found # the internet says I should use the ActiveController::RecordNotFound error
   end
 
   # Creates a game recourse
@@ -32,7 +32,8 @@ class GamesController < ApplicationController
   # @verb POST
   # @path /games
   def create
-    # TODO
+    game = Game.create!(params[:game])
+    redirect_to game_url(game)
   end
 
   # Destroys given game
@@ -40,7 +41,10 @@ class GamesController < ApplicationController
   # @verb DELETE
   # @path /games/:id
   def destroy
-    # TODO
+    game = get_game params[:id]
+    return if game.nil?
+    game.destroy
+    redirect_to games_url
   end
 
 
@@ -51,7 +55,27 @@ class GamesController < ApplicationController
   # @param [String] :player The player making the move
   # @param [Int] :column The column the move is made on
   def move
-    # TODO
+    game = get_game params[:id]
+    return if game.nil?
+
+    success = game.make_move(params[:column].to_i, params[:player])
+    redirect_to game_url(game), :status => (success ? :ok : :bad_request)
+  end
+
+  private
+
+  def not_found
+    render :status => 404
+    #raise ActionController::RoutingError.new('Not Found')
+  end
+
+  def get_game(id)
+    game = Game.find_by_id(id)
+    if game.nil?
+      redirect_to games_url, :status => :not_found
+      return nil
+    end
+    game
   end
 
 end

@@ -73,6 +73,12 @@ describe GamesController do
     it 'should create a new game' do
       Game.count.should == (@game_count + 1)
     end
+
+    it 'should have the correct names' do
+      game = Game.last
+      game.red_player_name.should == 'red'
+      game.blue_player_name.should == 'blue'
+    end
   end
 
   describe 'DELETE /games/:id (games#destroy)' do
@@ -107,14 +113,14 @@ describe GamesController do
     describe 'with valid params' do
 
       let(:column) {(0...Game::NUM_COLUMNS).to_a.sample}
-      let(:player) {['red', 'blue'].sample}
+      let(:player) {%w(red blue).sample}
       let(:game) {FactoryGirl.create(:game)}
 
       before(:each) do
-        Game.stub(:find, game.id).and_return(game)
-        game.should_receive(:make_move).and_return(true)
-        post :move, :id => game.id,
-                    :player => player,
+        Game.stub(:find_by_id, :game.id).and_return(:game)
+        :game.should_receive(:make_move).and_return(true)
+        post :move, :id => :game.id,
+                    :player => :player,
                     :column => column
       end
 
@@ -137,7 +143,7 @@ describe GamesController do
 
       it 'should return 400 and {:success => false} if make move is unsuccessful' do
         @game = FactoryGirl.create(:game)
-        Game.stub(:find, @game.id).and_return(@game)
+        Game.stub(:find_by_id, @game.id).and_return(@game)
         @game.should_receive(:make_move).and_return(false)
 
         post :move, :id => @game.id

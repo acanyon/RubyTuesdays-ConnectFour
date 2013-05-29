@@ -20,7 +20,7 @@ describe Game::BoardMixin do
 
     it 'should return their own coords if distance is 0' do
       coord = [row, column]
-      %w(horizontal vertical diagonal).map(&:to_s).each do |funct|
+      %w(horizontal vertical diagonal_right).map(&:to_s).each do |funct|
         Game.send(funct, coord, 0).should == coord
       end
     end
@@ -28,7 +28,7 @@ describe Game::BoardMixin do
     it 'should count x away from origin' do
       dist = (Game::NUM_ROWS > Game::NUM_COLUMNS) ? column : row
 
-      coords = %w(horizontal vertical diagonal).map(&:to_s).map do |funct|
+      coords = %w(horizontal vertical diagonal_right).map(&:to_s).map do |funct|
         Game.send(funct, [0,0], dist)
       end
 
