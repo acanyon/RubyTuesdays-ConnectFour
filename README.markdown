@@ -4,7 +4,7 @@ The RubyTuesdays ConnectFour project is a 6 week coding sprint aimed at teaching
 
 
 ## Setup 
-See the wiki page: http://github.com/acanyon/RubyTuesdays-ConnectFour/wiki/Setup
+See the wiki page: https://github.com/acanyon/RubyTuesdays-ConnectFour/wiki
 
 
 ## License 
